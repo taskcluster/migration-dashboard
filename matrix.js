@@ -440,7 +440,7 @@ var MATRIX = {
     [TASK.L10N]: false
   },
   'Windows 2012 x64 opt': {
-    blocked: 'bug 111111',
+    blocked: null,
     [TASK.WORKER]: true,
     [TASK.AMI]: false,
     [TASK.MACH]: false,
