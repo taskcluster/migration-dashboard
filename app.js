@@ -1,13 +1,14 @@
-(({ TEAM, LABELS, TASK, OWNERS, PHASES, MATRIX }, $) => {
+(function(window, $) {
+  var { TEAM, LABELS, TASK, OWNERS, PHASES, MATRIX } = window;
 
-  let isComplete = (item) => {
-    let copy = Object.assign({}, item);
+  var isComplete = function(item) {
+    var copy = Object.assign({}, item);
 
     delete copy.blocked;
 
-    let incomplete = Object
+    var incomplete = Object
       .keys(copy)
-      .find(key => !copy[key]);
+      .find(function(key) { return !copy[key]; });
 
     return !incomplete;
   };
@@ -15,13 +16,13 @@
   /**
    * @returns {string} markup
    */
-  let Blocked = (data) => {
+  var Blocked = function(data) {
     if (!data.blocked) {
       return '<p><span class="label label-info">Not Blocked</span></p>';
     }
 
-    let result = /(B|b)ug (\d{5,})/.exec(data.blocked);
-    let blockedContent = result && result[2] ?
+    var result = /(B|b)ug (\d{5,})/.exec(data.blocked);
+    var blockedContent = result && result[2] ?
       `<a href="http://bugzil.la/${result[2]}" target="_blank">${data.blocked} <i class="fa fa-external-link" aria-hidden="true"></i></a>` :
       data.blocked;
 
@@ -35,20 +36,20 @@
   /**
    * @returns {string} markup
    */
-  let Progress = (phase, tasks, data) => {
-    tasks = tasks.filter(t => data[t] !== null);
+  var Progress = function(phase, tasks, data) {
+    tasks = tasks.filter(function(t) { return data[t] !== null; });
 
     if (!tasks.length) {
       return '';
     }
 
-    let percent = 1 / tasks.length * 100;
-    let progresses = tasks
-      .map(task => `
+    var percent = 1 / tasks.length * 100;
+    var progresses = tasks
+      .map(function(task) { return `
         <div class="progress-bar progress-bar-${data[task] ? 'success' : 'warning'}" style="width: ${percent}%">
           <span>${task}</span>
         </div>
-      `);
+      `});
 
     return `
       <hr />
@@ -62,7 +63,7 @@
   /**
    * @returns {string} markup
    */
-  let Heading = (name, id) => {
+  var Heading = function(name, id) {
     return `
       <div class="panel-heading" role="tab" id="heading-${id}">
         <h4 class="panel-title">
@@ -77,11 +78,11 @@
   /**
    * @returns {string} markup
    */
-  let Body = (data) => {
-    let progresses = Object
+  var Body = function(data) {
+    var progresses = Object
       .keys(PHASES)
-      .map(phase => {
-        let tasks = PHASES[phase];
+      .map(function(phase) {
+        var tasks = PHASES[phase];
 
         return Progress(phase, tasks, data);
       });
@@ -97,8 +98,8 @@
   /**
    * @returns {string} markup
    */
-  let Panel = (name, index, data) => {
-    let panelClass = 'panel-default';
+  var Panel = function(name, index, data) {
+    var panelClass = 'panel-default';
 
     if (data.completed) {
       panelClass = 'panel-success';
@@ -116,14 +117,14 @@
     `;
   };
 
-  let pending = 0;
-  let blocked = 0;
-  let completed = 0;
+  var pending = 0;
+  var blocked = 0;
+  var completed = 0;
 
-  let keys = Object.keys(MATRIX);
-  let markup = keys
-    .map((name, index) => {
-      let item = MATRIX[name];
+  var keys = Object.keys(MATRIX);
+  var markup = keys
+    .map(function(name, index) {
+      var item = MATRIX[name];
 
       item.completed = isComplete(item);
 
@@ -145,11 +146,11 @@
   $('#blocked').html(`<sup>${blocked}</sup>/<sub>${keys.length}</sub>`);
   $('#migrated').html(`<sup>${completed}</sup>/<sub>${keys.length}</sub>`);
 
-  let owners = Object
+  var owners = Object
     .keys(OWNERS)
-    .map(task => {
-      let teams = OWNERS[task];
-      let labels = teams.map(team => `<span class="label label-${LABELS[team]}">${team}</span>`);
+    .map(function(task) {
+      var teams = OWNERS[task];
+      var labels = teams.map(function(team) { return `<span class="label label-${LABELS[team]}">${team}</span>`; });
 
       return `
         <tr>

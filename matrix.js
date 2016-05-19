@@ -1,6 +1,6 @@
 'use strict';
 
-const TEAM = {
+var TEAM = {
   TASKCLUSTER: 'TaskCluster',
   REL_OPS: 'Release Operations',
   ENG_PROD: 'Engineering Productivity',
@@ -9,7 +9,7 @@ const TEAM = {
   REL_ENG: 'Release Engineering'
 };
 
-const LABELS = {
+var LABELS = {
   [TEAM.TASKCLUSTER]: 'default',
   [TEAM.REL_OPS]: 'primary',
   [TEAM.ENG_PROD]: 'success',
@@ -18,7 +18,7 @@ const LABELS = {
   [TEAM.REL_ENG]: 'danger'
 };
 
-const TASK = {
+var TASK = {
   WORKER: 'TaskCluster worker ready',
   AMI: 'image/AMI ready',
   MACH: 'mach build set up',
@@ -40,7 +40,7 @@ const TASK = {
   L10N: 'l10n'
 };
 
-const OWNERS = {
+var OWNERS = {
   [TASK.WORKER]: [TEAM.TASKCLUSTER],
   [TASK.AMI]: [TEAM.TASKCLUSTER, TEAM.REL_OPS],
   [TASK.MACH]: [],
@@ -62,7 +62,7 @@ const OWNERS = {
   [TASK.L10N]: [TEAM.REL_ENG]
 };
 
-const PHASES = {
+var PHASES = {
   'TaskCluster': [TASK.WORKER, TASK.AMI, TASK.MACH, TASK.MOZHARNESS],
   'Release Operations': [TASK.TRY, TASK.BUILD_PEER],
   'Symbols': [TASK.SYMBOL],
@@ -73,7 +73,7 @@ const PHASES = {
   'Release Engineering': [TASK.SIGNED, TASK.MAR, TASK.L10N]
 };
 
-const MATRIX = {
+var MATRIX = {
   'Linux x64 debug': {
     blocked: 'AWS Sucks',
     [TASK.WORKER]: true,
