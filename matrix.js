@@ -73,6 +73,41 @@ var PHASES = {
   'Release Engineering': [TASK.SIGNED, TASK.MAR, TASK.L10N]
 };
 
+/**
+ * GUIDE
+ * blocked:
+ *    used to denote if there is something blocking the platform from continuing
+ *    use null or false to denote not blocked
+ *    use "bug xxxxxx" to denote blocked, will be linked in UI
+ *    use "descriptive message" to denote blocked with displayed reason
+ *
+ *    example:
+ *      {
+ *        'Sample debug': {
+ *          blocked: null,
+ *          blocked: false,
+ *          blocked: 'AWS Sucks',
+ *          blocked: 'bug 111111'
+ *        }
+ *      }
+ *
+ * [TASK.<id>]: <value>
+ *    mark a keyed task's status
+ *    use false to denote the task as incomplete
+ *    use a bug number to denote the task as incomplete, will be linked in UI
+ *    use true to denote the task as complete
+ *    use null to denote the task as not applicable to the platform
+ *
+ *    example:
+ *      {
+ *        'Sample debug': {
+ *          [TASK.WORKER]: false,
+ *          [TASK.AMI]: 111111,
+ *          [TASK.MACH]: true,
+ *          [TASK.MOZHARNESS]: null
+ *        }
+ *      }
+ */
 var MATRIX = {
   'Linux x64 debug': {
     blocked: null,

@@ -8,7 +8,7 @@
 
     var incomplete = Object
       .keys(copy)
-      .find(function(key) { return copy[key] === false; });
+      .find(function(key) { return copy[key] !== true && copy[key] !== null; });
 
     return !incomplete;
   };
@@ -45,11 +45,17 @@
 
     var percent = 1 / tasks.length * 100;
     var progresses = tasks
-      .map(function(task) { return `
-        <div class="progress-bar progress-bar-${data[task] ? 'success' : 'warning'}" style="width: ${percent}%">
-          <span>${task}</span>
-        </div>
-      `});
+      .map(function(task) {
+        var content = typeof data[task] === 'number' ?
+          `<a href="http://bugzil.la/${data[task]}" target="_blank">${task}</a>`:
+          `<span>${task}</span>`;
+
+        return `
+          <div class="progress-bar progress-bar-${data[task] === true ? 'success' : 'warning'}" style="width: ${percent}%">
+            ${content}
+          </div>
+        `;
+      });
 
     return `
       <hr />
@@ -68,9 +74,9 @@
       `<i class="fa fa-check-circle" aria-hidden="true"></i>` :
       Object
         .keys(data)
-        .filter(function(task) { return data[task] !== null; })
+        .filter(function(task) { return data[task] !== null && task !== 'blocked' && task !== 'completed'; })
         .map(function(task) {
-          var completed = data[task];
+          var completed = data[task] === true;
 
           return completed ?
             `<i class="fa fa-circle text-success" aria-hidden="true"></i>` :
