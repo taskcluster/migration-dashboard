@@ -34,3 +34,12 @@
 #accordion-owners > .panel {
   border-color: #eee;
 }
+
+.panel-title .fa.fa-circle {
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+.panel-success .panel-title .fa.fa-circle.text-success {
+  color: rgba(255, 255, 255, 0.8);
+}

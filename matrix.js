@@ -75,7 +75,7 @@ var PHASES = {
 
 var MATRIX = {
   'Linux x64 debug': {
-    blocked: 'AWS Sucks',
+    blocked: null,
     [TASK.WORKER]: true,
     [TASK.AMI]: true,
     [TASK.MACH]: true,
@@ -92,9 +92,9 @@ var MATRIX = {
     [TASK.TALOS]: null,
     [TASK.TIER2]: true,
     [TASK.TIER1]: true,
-    [TASK.SIGNED]: false,
-    [TASK.MAR]: false,
-    [TASK.L10N]: false
+    [TASK.SIGNED]: null,
+    [TASK.MAR]: null,
+    [TASK.L10N]: null
   },
   'Linux x64 opt': {
     blocked: null,

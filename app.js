@@ -8,7 +8,7 @@
 
     var incomplete = Object
       .keys(copy)
-      .find(function(key) { return !copy[key]; });
+      .find(function(key) { return copy[key] === false; });
 
     return !incomplete;
   };
@@ -63,12 +63,27 @@
   /**
    * @returns {string} markup
    */
-  var Heading = function(name, id) {
+  var Heading = function(name, id, data) {
+    var indicators = data.completed ?
+      `<i class="fa fa-check-circle" aria-hidden="true"></i>` :
+      Object
+        .keys(data)
+        .filter(function(task) { return data[task] !== null; })
+        .map(function(task) {
+          var completed = data[task];
+
+          return completed ?
+            `<i class="fa fa-circle text-success" aria-hidden="true"></i>` :
+            `<i class="fa fa-circle text-warning" aria-hidden="true"></i>`;
+        })
+        .join('');
+
     return `
       <div class="panel-heading" role="tab" id="heading-${id}">
         <h4 class="panel-title">
           <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-${id}" aria-controls="collapse-${id}">
             ${name}
+            ${indicators}
           </a>
         </h4>
       </div>
@@ -109,7 +124,7 @@
 
     return `
       <div class="panel ${panelClass}">
-        ${Heading(name, index)}
+        ${Heading(name, index, data)}
         <div id="collapse-${index}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-${index}">
           ${Body(data)}
         </div>
