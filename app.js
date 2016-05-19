@@ -17,7 +17,9 @@
    * @returns {string} markup
    */
   var Blocked = function(data) {
-    if (!data.blocked) {
+    if (data.completed) {
+      return '<p><span class="label label-default">Completed</span></p>';
+    } else if (!data.blocked) {
       return '<p><span class="label label-info">Not Blocked</span></p>';
     }
 
