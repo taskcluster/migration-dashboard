@@ -1,4 +1,4 @@
-(({ TEAM, TASK, OWNERS, PHASES, MATRIX }, $) => {
+(({ TEAM, LABELS, TASK, OWNERS, PHASES, MATRIX }, $) => {
 
   let isComplete = (item) => {
     let copy = Object.assign({}, item);
@@ -12,18 +12,12 @@
     return !incomplete;
   };
 
-  let phaseCompletion = (tasks, data) => {
-    let numerator = tasks.reduce((acc, task) => acc + (data[task] ? 1 : 0), 0);
-
-    return (numerator / tasks.length) * 100;
-  };
-
   /**
    * @returns {string} markup
    */
   let Blocked = (data) => {
     if (!data.blocked) {
-      return '<p><span class="label label-info">Not Blocked</span></p><hr />';
+      return '<p><span class="label label-info">Not Blocked</span></p>';
     }
 
     let result = /(B|b)ug (\d{5,})/.exec(data.blocked);
@@ -35,7 +29,6 @@
       <p class="text-warning">
         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Blocked: ${blockedContent}
       </p>
-      <hr />
     `;
   };
 
@@ -43,21 +36,25 @@
    * @returns {string} markup
    */
   let Progress = (phase, tasks, data) => {
-    let percent = phaseCompletion(tasks, data);
-    let progressClass = 'progress-bar-default';
+    tasks = tasks.filter(t => data[t] !== null);
 
-    if (percent === 0) {
-      progressClass = 'progress-bar-warning';
-    } else if (percent === 100) {
-      progressClass = 'progress-bar-success';
+    if (!tasks.length) {
+      return '';
     }
 
+    let percent = 1 / tasks.length * 100;
+    let progresses = tasks
+      .map(task => `
+        <div class="progress-bar progress-bar-${data[task] ? 'success' : 'warning'}" style="width: ${percent}%">
+          <span>${task}</span>
+        </div>
+      `);
+
     return `
+      <hr />
       ${phase}
       <div class="progress">
-        <div class="progress-bar ${progressClass}" role="progressbar" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100" style="width: ${percent}%;">
-          ${percent.toFixed(0)}%
-        </div>
+        ${progresses.join('')}
       </div>
     `;
   };
@@ -147,5 +144,21 @@
   $('#pending').html(`<sup>${pending}</sup>/<sub>${keys.length}</sub>`);
   $('#blocked').html(`<sup>${blocked}</sup>/<sub>${keys.length}</sub>`);
   $('#migrated').html(`<sup>${completed}</sup>/<sub>${keys.length}</sub>`);
+
+  let owners = Object
+    .keys(OWNERS)
+    .map(task => {
+      let teams = OWNERS[task];
+      let labels = teams.map(team => `<span class="label label-${LABELS[team]}">${team}</span>`);
+
+      return `
+        <tr>
+          <td>${task}</td>
+          <td>${labels.join('')}</td>
+        </tr>
+      `;
+    });
+
+  $('#owners').html(owners.join(''));
 
 })(window, jQuery);

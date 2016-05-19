@@ -9,6 +9,15 @@ const TEAM = {
   REL_ENG: 'Release Engineering'
 };
 
+const LABELS = {
+  [TEAM.TASKCLUSTER]: 'default',
+  [TEAM.REL_OPS]: 'primary',
+  [TEAM.ENG_PROD]: 'success',
+  [TEAM.BUILD]: 'info',
+  [TEAM.TESTS]: 'warning',
+  [TEAM.REL_ENG]: 'danger'
+};
+
 const TASK = {
   WORKER: 'TaskCluster worker ready',
   AMI: 'image/AMI ready',
@@ -661,4 +670,4 @@ const MATRIX = {
   }
 };
 
-Object.assign(window, { TEAM, TASK, OWNERS, PHASES, MATRIX });
+Object.assign(window, { TEAM, LABELS, TASK, OWNERS, PHASES, MATRIX });

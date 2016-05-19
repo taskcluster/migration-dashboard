@@ -9,9 +9,28 @@
 }
 
 .progress .progress-bar {
-  text-align: left;
   padding-left: 10px;
   font-size: 13px;
   line-height: 21px;
   min-width: 3em;
+}
+
+.progress .progress-bar:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, .50);
+}
+
+#collapse-owners {
+  padding-bottom: 20px;
+}
+
+.table td:first-child {
+  text-align: right;
+}
+
+.table .label {
+  margin-right: 10px;
+}
+
+#accordion-owners > .panel {
+  border-color: #eee;
 }
