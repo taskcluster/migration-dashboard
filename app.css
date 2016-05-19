@@ -1,0 +1,17 @@
+#cards .panel-body {
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.progress {
+  height: 21px;
+}
+
+.progress .progress-bar {
+  text-align: left;
+  padding-left: 10px;
+  font-size: 13px;
+  line-height: 21px;
+  min-width: 3em;
+}
