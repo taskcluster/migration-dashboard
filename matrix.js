@@ -158,10 +158,7 @@ var MATRIX = {
     [TASK.E10S]: true,
     [TASK.TALOS]: null,
     [TASK.TIER2]: true,
-    [TASK.TIER1]: true,
-    [TASK.SIGNED]: null,
-    [TASK.MAR]: null,
-    [TASK.L10N]: null
+    [TASK.TIER1]: true
   },
   'Linux x64 opt': {
     blocked: null,
@@ -574,12 +571,7 @@ var MATRIX = {
     [TASK.REF]: false,
     [TASK.WEB_PLATFORM]: false,
     [TASK.E10S]: false,
-    [TASK.TALOS]: false,
-    [TASK.TIER2]: false,
-    [TASK.TIER1]: false,
-    [TASK.SIGNED]: false,
-    [TASK.MAR]: false,
-    [TASK.L10N]: false
+    [TASK.TIER2]: false
   },
   'Windows 8 debug': {
     blocked: null,
@@ -596,12 +588,7 @@ var MATRIX = {
     [TASK.REF]: false,
     [TASK.WEB_PLATFORM]: false,
     [TASK.E10S]: false,
-    [TASK.TALOS]: false,
-    [TASK.TIER2]: false,
-    [TASK.TIER1]: false,
-    [TASK.SIGNED]: false,
-    [TASK.MAR]: false,
-    [TASK.L10N]: false
+    [TASK.TIER2]: false
   },
   'Windows 10 opt': {
     blocked: null,
@@ -618,12 +605,7 @@ var MATRIX = {
     [TASK.REF]: false,
     [TASK.WEB_PLATFORM]: false,
     [TASK.E10S]: false,
-    [TASK.TALOS]: false,
-    [TASK.TIER2]: false,
-    [TASK.TIER1]: false,
-    [TASK.SIGNED]: false,
-    [TASK.MAR]: false,
-    [TASK.L10N]: false
+    [TASK.TIER2]: false
   },
   'Windows 10 debug': {
     blocked: null,
@@ -640,12 +622,7 @@ var MATRIX = {
     [TASK.REF]: false,
     [TASK.WEB_PLATFORM]: false,
     [TASK.E10S]: false,
-    [TASK.TALOS]: false,
-    [TASK.TIER2]: false,
-    [TASK.TIER1]: false,
-    [TASK.SIGNED]: false,
-    [TASK.MAR]: false,
-    [TASK.L10N]: false
+    [TASK.TIER2]: false
   },
   'OS X debug': {
     blocked: null,
@@ -662,12 +639,7 @@ var MATRIX = {
     [TASK.REF]: false,
     [TASK.WEB_PLATFORM]: false,
     [TASK.E10S]: false,
-    [TASK.TALOS]: false,
-    [TASK.TIER2]: false,
-    [TASK.TIER1]: false,
-    [TASK.SIGNED]: false,
-    [TASK.MAR]: false,
-    [TASK.L10N]: false
+    [TASK.TIER2]: false
   },
   'OS X opt': {
     blocked: null,
@@ -684,12 +656,7 @@ var MATRIX = {
     [TASK.REF]: false,
     [TASK.WEB_PLATFORM]: false,
     [TASK.E10S]: false,
-    [TASK.TALOS]: false,
-    [TASK.TIER2]: false,
-    [TASK.TIER1]: false,
-    [TASK.SIGNED]: false,
-    [TASK.MAR]: false,
-    [TASK.L10N]: false
+    [TASK.TIER2]: false
   },
   'OS X cross-compiled debug': {
     blocked: null,
@@ -706,21 +673,16 @@ var MATRIX = {
     [TASK.REF]: false,
     [TASK.WEB_PLATFORM]: false,
     [TASK.E10S]: false,
-    [TASK.TALOS]: false,
-    [TASK.TIER2]: false,
-    [TASK.TIER1]: false,
-    [TASK.SIGNED]: false,
-    [TASK.MAR]: false,
-    [TASK.L10N]: false
+    [TASK.TIER2]: false
   },
   'OS X cross-compiled opt': {
     blocked: null,
-    [TASK.WORKER]: false,
-    [TASK.AMI]: false,
-    [TASK.MACH]: false,
-    [TASK.MOZHARNESS]: false,
-    [TASK.TRY]: false,
-    [TASK.BUILD_PEER]: false,
+    [TASK.WORKER]: true,
+    [TASK.AMI]: true,
+    [TASK.MACH]: true,
+    [TASK.MOZHARNESS]: true,
+    [TASK.TRY]: true,
+    [TASK.BUILD_PEER]: true,
     [TASK.SYMBOL]: false,
     [TASK.IMAGE]: false,
     [TASK.UNIT]: false,
@@ -728,12 +690,25 @@ var MATRIX = {
     [TASK.REF]: false,
     [TASK.WEB_PLATFORM]: false,
     [TASK.E10S]: false,
-    [TASK.TALOS]: false,
-    [TASK.TIER2]: false,
-    [TASK.TIER1]: false,
-    [TASK.SIGNED]: false,
-    [TASK.MAR]: false,
-    [TASK.L10N]: false
+    [TASK.TIER2]: true
+  },
+  'Signing': {
+    blocked: null,
+    [TASK.WORKER]: false,
+    [TASK.AMI]: false,
+    [TASK.SIGNED]: false
+  },
+  'L10N': {
+    blocked: null,
+    [TASK.WORKER]: true,
+    [TASK.AMI]: true,
+    [TASK.MOZHARNESS]: true,
+    [TASK.TRY]: false,
+    [TASK.SIGNED]: false
+  },
+  'Talos': {
+    blocked: false,
+    [TASK.TALOS]: false
   }
 };
 
